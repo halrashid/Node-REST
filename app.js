@@ -78,7 +78,8 @@ connection.query(queryString1,[itemNo], (err, rows, fields) => {
     }
     console.log("fetched items succesfully ")
     const item = rows.map((row)=> {
-        return { No: row.No,
+        return { 
+            No: row.No,
             item: row.item,
             Description: row.Description,
             Impact_Remars_Comments: row.Impact_Remars_Comments,
