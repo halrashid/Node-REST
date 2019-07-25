@@ -37,7 +37,19 @@ connection.query(queryString1,[itemNo], (err, rows, fields) => {
     })
     res.json(item)
 })
+})
 
+
+app.get('/Item/:No',(req,res)=> {
+    console.log("fetching" +req.params.No)
+    
+    const connection = mysql.createConnection({
+        host: 'localhost',
+        user:'root',
+        password: '123456shoruq',
+        database:'m'
+    
+    })
 //TEST FOR TABLE DETAILS:
 const itemNo = req.params.No
 const queryString2 = "SELECT * FROM tableDetails WHERE No = ?"
