@@ -162,7 +162,6 @@ connection.query(queryString2,[itemNo], (err, rows, fields) => {
 })
 
 app.get("/", (req, res)=>{
-    console.log("It works!")
     res.send("Hello he is a root! ")
 })
 
