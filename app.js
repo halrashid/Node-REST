@@ -65,7 +65,6 @@ app.get('/Items/:Page/:Type',(req,res)=> {
 app.post("/Item", (req, res) => {
     const connection = getConnection();
     const bodyJson = req.body;
-    console.log('printing body', bodyJson);
 
     const columns = "("
         + "Item, "
@@ -123,9 +122,25 @@ app.post("/Item", (req, res) => {
             res.end();
             return;
         }
+        bodyJson.No = rows.insertId;
         res.json(bodyJson);
     })
 });
+
+app.delete("/Item/:No" , (req,res)=> {
+    console.log("deleting item", req.params.No);
+    const connection = getConnection();
+    const deleteQuery = "DELETE FROM tableDetails WHERE No = ?";
+    connection.query(deleteQuery, [req.params.No], (err, rows, fields) => {
+        if (err){
+            console.log("failed to query for delete item" + err);
+            res.sendStatus(500);
+            res.end();
+            return;
+        }
+        res.json(req.params.No);
+    });
+})
 
 app.get("/", (req, res)=>{
     res.send("Hello he is a groot! ")
